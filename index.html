@@ -8,7 +8,15 @@
     <title>Cameron Pittman: Portfolio</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <!-- SOURCE: https://github.com/typekit/webfontloader -->
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.x/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: ['Open Sans']
+        }
+      });
+    </script>
 
     <style> 
       @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf) format('truetype')}
