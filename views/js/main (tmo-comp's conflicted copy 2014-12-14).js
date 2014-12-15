@@ -17,10 +17,6 @@ cameron *at* udacity *dot* com
 */
 
 // As you may have realized, this website randomly generates pizzas.
-
-// Declare items for moving pizzas
-var items;
-
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
@@ -502,19 +498,19 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+
+
 function updatePositions() {
   frame++;
-  var top = document.body.scrollTop;
   //window.performance.mark("mark_start_frame");
-  if (items === undefined) {
-    items = document.querySelectorAll('.mover');
-  }
-  var phase = 0;
-  var length = items.length;
-  for (var i = 0; i < length; i++) {
-    phase = Math.sin((top / 1250) + (i % 5));
+
+  var items = document.querySelectorAll('.mover');
+  var top = document.body.scrollTop;
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin((top / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
   /*window.performance.mark("mark_end_frame");
