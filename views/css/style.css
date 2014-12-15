@@ -14,7 +14,8 @@ body {
 
 input {
   background: grey;
-  font-size: 18px;
+  font-size: 40px;
+  margin: 10px 20px 20px 0;
 }
 
 form {
