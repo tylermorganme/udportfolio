@@ -455,9 +455,10 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[0], size);
-    var newwidth = (document.querySelectorAll(".randomPizzaContainer")[0].offsetWidth + dx) + 'px';
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    var newWidth = (document.querySelectorAll(".randomPizzaContainer")[0].offsetWidth + dx) + 'px';
+    var length = document.querySelectorAll(".randomPizzaContainer").length;
+    for (var i = 0; i < length; i++) {
+      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newWidth;
     }
   }
 
@@ -530,8 +531,8 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 6;
-  var s = 100/cols;
+  var s = 256;
+  var cols = Math.ceil(document.body.clientWidth/(s));
   var vSpread = 37;
   var pizzas = cols * 3;
   for (var i = 0; i < pizzas; i++) {
@@ -540,7 +541,6 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = s/4 + (i % cols) * s;
     elem.style.left = 100/(cols - 1) * (i % cols) + '%';
     elem.style.top = (Math.floor(i / cols) * vSpread) + 5 + '%';
     document.querySelector("#movingPizzas1").appendChild(elem);
