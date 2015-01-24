@@ -66,3 +66,4 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 
 Optimizations:
 Changed the CSS for the pizza and descriptions to make them look better when resized.
+Used more efficient query selectors to make PizzaResize faster.

@@ -402,6 +402,9 @@ var pizzaElementGenerator = function(i) {
   return pizzaContainer;
 }
 
+var pizzaImages = document.getElementsByClassName("pizza-img");
+var pizzaDescs = document.getElementsByClassName("pizza-desc");
+
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) { 
   window.performance.mark("mark_start_resize");   // User Timing API function
@@ -444,8 +447,8 @@ var resizePizzas = function(size) {
     var imgClass = classes[0];
     var descClass = classes[1];
 
-    document.getElementsByClassName("pizza-img").className = imgClass;
-    document.getElementsByClassName("pizza-desc").className = descClass;
+    pizzaImages.offsetWidth = imgClass;
+    pizzaDescs.offsetWidth  = descClass;
   }
 
   changePizzaSizes(size);
