@@ -413,13 +413,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -446,9 +446,11 @@ var resizePizzas = function(size) {
     var classes = sizeSwitcher(size);
     var imgClass = classes[0];
     var descClass = classes[1];
-
-    pizzaImages.offsetWidth = imgClass;
-    pizzaDescs.offsetWidth  = descClass;
+    var length = pizzaImages.length;
+    for (var i = 0; i < length; i++) {
+      pizzaImages[i].className = imgClass;
+      pizzaDescs[i].className  = descClass;
+    }
   }
 
   changePizzaSizes(size);
@@ -497,7 +499,7 @@ function updatePositions() {
   var top = document.body.scrollTop;
   window.performance.mark("mark_start_frame");
   if (items === undefined) {
-    items = document.querySelectorAll('.mover');
+    items = document.getElementsByClassName('mover');
   }
   var phase = 0;
   var length = items.length;
@@ -518,7 +520,8 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
-// Generates the sliding pizzas when the page loads. Limits numbers of pizzas based on the width of the of the document. Does not account for resizing after initial rendering.
+/*Generates the sliding pizzas when the page loads.
+Limits numbers of pizzas based on the width of the of the document.*/
 document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
   var cols = Math.ceil(document.body.clientWidth/(s));
@@ -532,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.style.left = 100/(cols - 1) * (i % cols) + '%';
     elem.style.top = (Math.floor(i / cols) * vSpread) + 5 + '%';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   updatePositions();
 });

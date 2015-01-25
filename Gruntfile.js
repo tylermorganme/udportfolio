@@ -17,6 +17,30 @@ module.exports = function(grunt) {
                 tasks: ['copy']
             }
         },
+        copy: {
+            main: {
+                src: '{*.html,*.txt}',
+                dest: 'build/',  
+            },
+            views: {
+                expand: true,
+                cwd: 'views/',
+                src: '*.html',
+                dest: 'build/views/',  
+            }
+            
+        },
+        processhtml: {
+            dev: {
+                files: {
+                    'build/index.html': ['index.html'],
+                    'build/project-2048.html': ['project-2048.html'],
+                    'build/project-mobile.html': ['project-mobile.html'],
+                    'build/project-webperf.html': ['project-webperf.html'],
+                    'build/views/pizza.html': ['views/pizza.html']
+                }
+            }
+        },
         concat: {
             main: {
                 src: [
@@ -69,21 +93,44 @@ module.exports = function(grunt) {
                 flatten: true,
                 src: 'views/css/*.css',
                 dest: 'build/views/css/'   
-            }
-            
+            } 
         },
-        copy: {
+        cssmin: {
             main: {
-                src: '*.html',
-                dest: 'build/',  
+                files: [{
+                expand: true,
+                cwd: 'build/css',
+                src: ['*.css', '!*.min.css'],
+                dest: 'build/css',
+                ext: '.min.css'
+                }]
             },
             views: {
+                files: [{
                 expand: true,
-                cwd: 'views/',
-                src: '*.html',
-                dest: 'build/views/',  
+                cwd: 'build/views/css',
+                src: ['*.css', '!*.min.css'],
+                dest: 'build/views/css',
+                ext: '.min.css'
+                }]
             }
-            
+        },
+        clean: {
+            js: {
+                src: [
+                    'build/js/*.js',
+                    'build/views/js/*.js',
+                    '!**/*.min.js'
+                    ]
+            },
+            css: {
+                src: [
+                    'build/css/*.css',
+                    'build/views/css/*.css',
+                    '!**/*.min.css',
+                    ]
+            }
+                
         }
     });
 
@@ -91,6 +138,5 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
     grunt.registerTask('w', ['watch']);
-    grunt.registerTask('default', ['concat','uglify','imagemin', 'autoprefixer', 'copy']);
-
+    grunt.registerTask('default', ['copy', 'processhtml:dev', 'concat','uglify','imagemin', 'autoprefixer', 'cssmin', 'clean']);
 };

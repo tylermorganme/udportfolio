@@ -1,3 +1,52 @@
+#Instructions:
+This application is a mock portfolio built as part of the Udacity Front-End Development Nanodegree. It made up of a central portfolio page and 4 project pages.
+
+The web-ready, optimized copies of all files are located in the Build folder. To launch this applicaiton simply copy the contents of the Build folder into the root directory of your website.
+
+This project was optimized using grunt. Development copies of all files are in the root folder. The optimized version of the website is located in the build folder. If you wish to make changes to the files and optimize them for the web you can learn how to use Grunt at 
+[http://gruntjs.com/](http://gruntjs.com/).
+
+
+**No animals were harmed during the production of this application**
+
+##Optimizations:
+
+*Used grunt to automate build process.
+	*Minified images
+	*Uglified JS
+	*Autoprefixed CSS to improve cross-browser compatibility
+	*TODO: UNCSS to remove unnecessary CSS
+	*TODO: Minify CSS
+	*TODO: Minify HTML
+
+###index.html
+*Used WebFrontLoader to improve speed from font loading
+*Used UNCSS to create page specific CSS stylsheet from Style.css and inlined the resulting styling
+*Added media attribute for print stylesheet
+*Loaded google analytics asynchronously
+*Included perfmatters.js inline
+
+###pizza.html
+*Added backface-visibility: hidden to reduce the size of areas redrawn
+*Stored list of pizza elements and descriptions in a variable on load instead of *traversing the DOM every time the pizzas were resized.
+*Changed the styling for the pizzas and descriptions to improve visibility on smaller screen sizes (this including changing the JavaScript to manipulate new styling).
+*Used more efficient query selectors to make PizzaResize faster.
+*Restyled all Pizza elements at once instead of iterating through them.
+*Precalculated all lengths used in for loops to prevent calculating the same thing multiple times.
+*Minimzed use of querySelectorAll in favor or native getElemensById and getElementsByClass
+*Reduced unecessary background pizzas.
+*Made determination of number of background pizzas dynamic so that only enough pizzas are created to achieve desired density.
+
+_For further details on differences see tmo_diffs.txt_
+
+##Resources:
+*[Web Font Loader](https://github.com/typekit/webfontloader)
+*[Learning Grunt](http://css-tricks.com/grunt-people-think-things-like-grunt-weird-hard/)
+*[More Efficient Redrawing](http://benfrain.com/improving-css-performance-fixed-position-elements/)
+___
+
+# Original Assignment Content
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
@@ -64,6 +113,6 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
 
-Optimizations:
-Changed the CSS for the pizza and descriptions to make them look better when resized.
-Used more efficient query selectors to make PizzaResize faster.
+
+
+
